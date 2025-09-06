@@ -93,7 +93,10 @@ function HeroSection({ theme, mounted }: { theme?: string; mounted: boolean }) {
             Stop endlessly scrolling. Get curated, high-impact digital toolkits in fitness, wellness, and more. Delivered instantly.
           </motion.p>
           <motion.div variants={itemAnimation}>
-            <Button asChild size="lg" className="h-14 text-lg font-semibold rounded-full shadow-md">
+          <Button asChild size="lg"
+  className="h-14 text-lg font-semibold rounded-none shadow-md border-0
+             transition-all duration-300 ease-in-out
+            hover:shadow-glow-hover hover:scale-105 active:scale-100">
               <Link href="#packs">Explore Action Packs</Link>
             </Button>
           </motion.div>
@@ -122,7 +125,7 @@ function FeaturedPacksSection() {
             Each pack is a comprehensive toolkit designed to help you achieve specific goals and build lasting habits.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center max-w-6xl mx-auto">
           {featuredProducts.map((product) => (
             <ActionPackCard
               key={product.slug}

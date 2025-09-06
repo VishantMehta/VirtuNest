@@ -219,7 +219,7 @@ function MobileNav({ onLinkClick }: { onLinkClick: () => void }) {
                 <motion.div variants={mobileLinkVariants}>
                     <Button
                         size="lg"
-                        className="rounded-full text-xl h-14"
+                        className="rounded-none text-xl h-14"
                         onClick={onLinkClick}
                     >
                         Get Started
