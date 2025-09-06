@@ -2,7 +2,7 @@
 import { Suspense, useState, useEffect, useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import { Quote, CheckCircle, Users, Zap } from "lucide-react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 import Link from "next/link";
 import { useTheme } from "next-themes";
@@ -11,6 +11,36 @@ import { ActionPackCard } from "@/components/action-pack-card";
 import { Button } from "@/components/ui/button";
 import { featuredProducts } from "@/lib/products";
 import { cn } from "@/lib/utils";
+
+// ENHANCED: This component now creates a parallax effect with two layers of stars.
+function AnimatedStars() {
+  const starsRef1 = useRef(null); // Ref for the first, faster layer
+  const starsRef2 = useRef(null); // Ref for the second, slower layer
+
+  useFrame(() => {
+    
+    // Animate the first layer (closer stars)
+    if (starsRef1.current) {
+      starsRef1.current.rotation.x += 0.0001;
+      starsRef1.current.rotation.y += 0.0002;
+    }
+    // Animate the second layer (distant stars) at a different speed
+    if (starsRef2.current) {
+      starsRef2.current.rotation.x += 0.00005;
+      starsRef2.current.rotation.y += 0.0001;
+    }
+  });
+
+  return (
+    <>
+      {/* Layer 1: Closer, faster stars */}
+      <Stars ref={starsRef1} radius={50} count={1500} factor={4} fade speed={1.5} />
+      {/* Layer 2: Distant, slower stars */}
+      <Stars ref={starsRef2} radius={100} count={2500} factor={4} fade speed={1.5} />
+    </>
+  );
+}
+
 
 export default function Home() {
   const { theme } = useTheme();
@@ -46,7 +76,7 @@ const itemAnimation: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: "easeInOut" }, // FIX
+    transition: { duration: 0.8, ease: "easeInOut" },
   },
 };
 
@@ -60,7 +90,7 @@ function HeroSection({ theme, mounted }: { theme?: string; mounted: boolean }) {
         {mounted && theme === "dark" && (
           <Suspense fallback={null}>
             <Canvas camera={{ position: [0, 0, 1] }}>
-              <Stars radius={50} count={3000} factor={4} fade speed={1.5} />
+              <AnimatedStars />
             </Canvas>
           </Suspense>
         )}
