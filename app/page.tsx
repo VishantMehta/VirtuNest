@@ -185,11 +185,15 @@ function HowItWorksSection() {
 }
 
 function TestimonialsSection() {
+  /* eslint-disable react/no-unescaped-entities */
   const testimonials = [
     { name: "Aarav Sharma", role: "Software Engineer", text: "The 'Productivity Power-Up' pack was a game-changer. I'm more focused and getting twice as much done. Highly recommended!" },
     { name: "Priya Patel", role: "Freelance Designer", text: "I was stuck in a creative rut. The 'Mindful Creator' guide helped me find inspiration again. The visual cheat sheet is on my desk now!" },
     { name: "Rohan Das", role: "Student", text: "As a student juggling multiple things, the 'Habit Hacker' toolkit gave me a clear system to build better study habits. Worth every rupee." },
+
   ];
+  /* eslint-disable react/no-unescaped-entities */
+  //above comments added for deployment error(for unescaped entities)
 
   return (
     <motion.section
@@ -235,11 +239,11 @@ const TestimonialCard = ({ name, role, text }: { name: string, role: string, tex
       onMouseMove={onMouseMove}
       className={cn(
         "card-border-glow relative h-full bg-card p-8 rounded-xl",
-        "shadow-lg dark:shadow-none"
+        "shadow-lg dark:shadow-none overflow-hidden"
       )}
     >
-      <Quote className="absolute top-6 right-6 h-10 w-10 text-border" />
-      <p className="text-foreground/90 mb-6 text-lg italic">"{text}"</p>
+      <Quote className="absolute top-4 right-4 h-12 w-12 text-border/20 pointer-events-none" />
+      <p className="text-foreground/90 mb-6 text-lg italic">“{text}”</p>
       <div className="font-sans font-semibold text-foreground text-lg">{name}</div>
       <div className="text-sm text-muted-foreground">{role}</div>
     </div>

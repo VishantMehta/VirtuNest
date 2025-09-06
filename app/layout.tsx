@@ -20,30 +20,64 @@ const fontBody = Inter({
 
 // Metadata for SEO
 export const metadata: Metadata = {
-  title: "VirtuNest - Actionable Guides for a Better You",
-  description: "Unlock your potential with high-impact digital toolkits in fitness, wellness, productivity, and more. Stop scrolling, start improving.",
+  metadataBase: new URL("https://virtunest.vercel.app"),
+  title: {
+    default: "VirtuNest – Action Pack Marketplace",
+    template: "%s | VirtuNest",
+  },
+  description:
+    "VirtuNest is a digital Action Pack marketplace offering AI-powered toolkits in fitness, wellness, beauty, and more. Multi-format packs (PDF, audio, infographic) at just ₹59.",
+  keywords: [
+    "Action Pack",
+    "digital toolkit",
+    "self improvement",
+    "fitness guides",
+    "wellness hacks",
+    "beauty tips",
+    "productivity pack",
+    "SuperProfile",
+    "VirtuNest",
+    "digital marketplace",
+    "AI guides",
+    "India",
+  ],
+  authors: [{ name: "VirtuNest Team" }],
+  creator: "VirtuNest",
+  publisher: "VirtuNest",
   openGraph: {
-    title: "VirtuNest - Actionable Guides for a Better You",
-    description: "Unlock your potential with high-impact digital toolkits.",
-    url: "https://virtunest.xyz", // Replace with your actual domain
+    type: "website",
+    locale: "en_IN",
+    url: "https://virtunest.vercel.app",
     siteName: "VirtuNest",
+    title: "VirtuNest – AI-Powered Action Packs for Instant Results",
+    description:
+      "Discover AI-powered Action Packs: bite-sized toolkits with PDF guides, audio summaries, and visual cheat sheets. Starting at just ₹59.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
+        alt: "VirtuNest Action Pack Marketplace",
       },
     ],
-    locale: "en_US",
-    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "VirtuNest - Actionable Guides for a Better You",
-    description: "Unlock your potential with high-impact digital toolkits.",
+    title: "VirtuNest – AI-Powered Action Packs",
+    description:
+      "Get instant digital toolkits in fitness, wellness, beauty & productivity. Multi-format packs for just ₹59.",
     images: ["/og-image.png"],
+    creator: "@virtu_nest",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://virtunest.vercel.app",
   },
 };
+
 export default function RootLayout({
   children,
 }: {

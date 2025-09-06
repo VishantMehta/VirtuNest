@@ -39,6 +39,30 @@ const itemAnimation: Variants = {
 };
 
 
+//for SEO/MetaData
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+    const product = allProducts.find(p => p.slug === params.slug);
+    if (!product) return {};
+
+    return {
+        title: `${product.title} | VirtuNest`,
+        description: product.description,
+        openGraph: {
+            title: product.title,
+            description: product.description,
+            url: `https://virtunest.vercel.app/packs/${product.slug}`,
+            images: [{ url: "/og-image.png", width: 1200, height: 630, alt: product.title }],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: product.title,
+            description: product.description,
+            images: ["/og-image.png"],
+        },
+    };
+}
+
+
 export default function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = use(params);
     const product = getProductBySlug(slug);
@@ -117,7 +141,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
 
                         <motion.div variants={itemAnimation} className="space-y-4 mb-10">
                             <h3 className="font-semibold text-xl font-heading">
-                                What's Included:
+                                What&apos;s Included:
                             </h3>
                             <ul className="space-y-3 text-muted-foreground">
                                 <li className="flex items-center">
