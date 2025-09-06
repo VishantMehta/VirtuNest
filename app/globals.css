@@ -1,26 +1,208 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-heading: 'var(--font-heading)', 'serif';
+  --font-sans: 'var(--font-sans)', 'sans-serif';
+
+  /* CSS Variables for Tailwind */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --radius: 0.75rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: 210 20% 98%;
+  --foreground: 210 10% 23%;
+  --card: 0 0% 100%;
+  --card-foreground: 210 10% 23%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 210 10% 23%;
+  --primary: 350 71% 51%;
+  /* Deep Crimson/Rose */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 15% 94%;
+  --secondary-foreground: 210 10% 23%;
+  --muted: 210 15% 94%;
+  --muted-foreground: 210 5% 45%;
+  --accent: 210 15% 94%;
+  --accent-foreground: 210 10% 23%;
+  --destructive: 0 84% 60%;
+  --border: 210 10% 88%;
+  --input: 210 10% 88%;
+  --ring: 350 71% 51%;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  --background: 222 47% 3.5%;
+  --foreground: 210 20% 98%;
+  --card: 222 47% 5%;
+  --card-foreground: 210 20% 98%;
+  --popover: 222 47% 3.5%;
+  --popover-foreground: 210 20% 98%;
+  --primary: 350 81% 61%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 222 47% 8%;
+  --secondary-foreground: 210 20% 98%;
+  --muted: 217 33% 17%;
+  --muted-foreground: 215 20% 65%;
+  --accent: 217 33% 17%;
+  --accent-foreground: 210 20% 98%;
+  --destructive: 0 63% 31%;
+  --border: 217 33% 17%;
+  --input: 217 33% 17%;
+  --ring: 350 81% 61%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-semibold tracking-tight text-foreground;
+    text-wrap: balance;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  p,
+  li,
+  span,
+  a,
+  div {
+    @apply font-sans;
+  }
+
+  p {
+    @apply text-base md:text-lg leading-relaxed text-muted-foreground;
+  }
+
+  ::selection {
+    @apply bg-primary/20;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80"><path fill="%23f0f2f5" fill-opacity="0.4" d="M14 16H9v-2h5V9.87a4 4 0 1 1 2 0V14h5v2h-5v5.13a4 4 0 1 1-2 0V16zm40 40h-5v-2h5v-4.13a4 4 0 1 1 2 0V54h5v2h-5v5.13a4 4 0 1 1-2 0V56z"/></svg>');
+  z-index: -2;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.dark body::before {
+  opacity: 0;
+}
+
+.dark body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, hsl(var(--border) / 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--border) / 0.3) 1px, transparent 1px);
+  background-size: 2.5rem 2.5rem;
+  mask-image: radial-gradient(ellipse 100% 60% at 50% 0%, #000 70%, transparent 100%);
+  z-index: -2;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.aurora-background {
+  position: relative;
+}
+
+.dark .aurora-background::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      hsl(var(--primary) / 0.08),
+      transparent 40%);
+  transition: background 0.8s ease;
+}
+
+.card-border-glow {
+  position: relative;
+  border-radius: var(--radius);
+}
+
+.dark .card-border-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), hsl(var(--primary) / 0.6), transparent 80%);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+  pointer-events: none;
+}
+
+.dark .card-border-glow:hover::before {
+  opacity: 1;
 }
