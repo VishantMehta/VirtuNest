@@ -7,7 +7,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { Points } from "three"; 
+import { Points } from "three";
 
 import { ActionPackCard } from "@/components/action-pack-card";
 import { Button } from "@/components/ui/button";
@@ -15,8 +15,8 @@ import { featuredProducts } from "@/lib/products";
 import { cn } from "@/lib/utils";
 
 function AnimatedStars() {
-  const starsRef1 = useRef<Points>(null); 
-  const starsRef2 = useRef<Points>(null); 
+  const starsRef1 = useRef<Points>(null);
+  const starsRef2 = useRef<Points>(null);
 
   useFrame(() => {
     if (starsRef1.current) {
@@ -38,14 +38,12 @@ function AnimatedStars() {
 }
 
 export default function Home() {
-  const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
-
   useEffect(() => setMounted(true), []);
 
   return (
     <main className="flex min-h-screen flex-col items-center aurora-background">
-      <HeroSection theme={theme} mounted={mounted} />
+      <HeroSection mounted={mounted} />
       <FeaturedPacksSection />
       <HowItWorksSection />
       <TestimonialsSection />
@@ -68,13 +66,14 @@ const itemAnimation: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut" } },
 };
 
-function HeroSection({ theme, mounted }: { theme?: string; mounted: boolean }) {
+function HeroSection({ mounted }: { mounted: boolean }) {
+  const { resolvedTheme } = useTheme();
   const titleWords = "Actionable Guides for a Better You".split(" ");
 
   return (
     <section className="relative w-full h-screen flex items-center justify-center text-center overflow-hidden">
       <div className="absolute inset-0 z-0 bg-transparent">
-        {mounted && theme === "dark" && (
+        {mounted && resolvedTheme === "dark" && (
           <Suspense fallback={null}>
             <Canvas camera={{ position: [0, 0, 1] }}>
               <AnimatedStars />
