@@ -100,6 +100,7 @@ export default function RootLayout({
         >
           <Navbar />
           <main>{children}</main>
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

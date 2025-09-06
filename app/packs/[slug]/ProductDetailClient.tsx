@@ -9,6 +9,7 @@ import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ActionPackCard } from "@/components/action-pack-card";
 import { cn } from "@/lib/utils";
+import { Product } from "@/lib/products";
 
 const sectionAnimation: Variants = {
     hidden: { opacity: 0 },
@@ -35,8 +36,8 @@ export default function ProductDetailClient({
     product,
     relatedProducts,
 }: {
-    product: any;
-    relatedProducts: any[];
+    product: Product;
+    relatedProducts: Product[];
 }) {
     const purchaseBoxRef = useRef<HTMLDivElement>(null);
 

@@ -12,7 +12,6 @@ import { Button } from "@/components/ui/button";
 import { featuredProducts } from "@/lib/products";
 import { cn } from "@/lib/utils";
 
-// Main Page Component
 export default function Home() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -185,15 +184,12 @@ function HowItWorksSection() {
 }
 
 function TestimonialsSection() {
-  /* eslint-disable react/no-unescaped-entities */
   const testimonials = [
     { name: "Aarav Sharma", role: "Software Engineer", text: "The 'Productivity Power-Up' pack was a game-changer. I'm more focused and getting twice as much done. Highly recommended!" },
     { name: "Priya Patel", role: "Freelance Designer", text: "I was stuck in a creative rut. The 'Mindful Creator' guide helped me find inspiration again. The visual cheat sheet is on my desk now!" },
     { name: "Rohan Das", role: "Student", text: "As a student juggling multiple things, the 'Habit Hacker' toolkit gave me a clear system to build better study habits. Worth every rupee." },
 
   ];
-  /* eslint-disable react/no-unescaped-entities */
-  //above comments added for deployment error(for unescaped entities)
 
   return (
     <motion.section
