@@ -67,13 +67,12 @@ const itemAnimation: Variants = {
 };
 
 function HeroSection({ mounted }: { mounted: boolean }) {
-  const { resolvedTheme } = useTheme();
   const titleWords = "Actionable Guides for a Better You".split(" ");
 
   return (
     <section className="relative w-full h-screen flex items-center justify-center text-center overflow-hidden">
       <div className="absolute inset-0 z-0 bg-transparent">
-        {mounted && resolvedTheme === "dark" && (
+        {mounted && (
           <Suspense fallback={null}>
             <Canvas camera={{ position: [0, 0, 1] }}>
               <AnimatedStars />
@@ -162,21 +161,9 @@ function FeaturedPacksSection() {
 
 function HowItWorksSection() {
   const steps = [
-    {
-      icon: Zap,
-      title: "Choose Your Pack",
-      description: "Select a toolkit that aligns with your personal or professional goals.",
-    },
-    {
-      icon: CheckCircle,
-      title: "Get Instant Access",
-      description: "Receive your digital guides and resources immediately after purchase.",
-    },
-    {
-      icon: Users,
-      title: "Start Improving",
-      description: "Apply the proven strategies and see tangible results in days, not weeks.",
-    },
+    { icon: Zap, title: "Choose Your Pack", description: "Select a toolkit that aligns with your personal or professional goals." },
+    { icon: CheckCircle, title: "Get Instant Access", description: "Receive your digital guides and resources immediately after purchase." },
+    { icon: Users, title: "Start Improving", description: "Apply the proven strategies and see tangible results in days, not weeks." },
   ];
 
   return (
@@ -185,9 +172,9 @@ function HowItWorksSection() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      className="w-full bg-secondary py-24 md:py-32"
+      className="w-full bg-secondary py-24 md:py-32 relative overflow-hidden aurora-section"
     >
-      <div className="container px-4 md:px-6">
+      <div className="relative z-10 container px-4 md:px-6">
         <div className="text-center mb-16">
           <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
             Get Results in 3 Simple Steps
@@ -199,7 +186,11 @@ function HowItWorksSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
           {steps.map((step, index) => (
-            <motion.div key={index} variants={itemAnimation} className="flex flex-col items-center text-center p-4">
+            <motion.div
+              key={index}
+              variants={itemAnimation}
+              className="flex flex-col items-center text-center p-4"
+            >
               <div className="flex items-center justify-center h-16 w-16 rounded-full bg-background dark:bg-primary/10 text-primary mb-6 shadow-md dark:shadow-none border border-border">
                 <step.icon className="h-8 w-8" />
               </div>
@@ -213,23 +204,12 @@ function HowItWorksSection() {
   );
 }
 
+
 function TestimonialsSection() {
   const testimonials = [
-    {
-      name: "Aarav Sharma",
-      role: "Software Engineer",
-      text: "The 'Productivity Power-Up' pack was a game-changer. I'm more focused and getting twice as much done. Highly recommended!",
-    },
-    {
-      name: "Priya Patel",
-      role: "Freelance Designer",
-      text: "I was stuck in a creative rut. The 'Mindful Creator' guide helped me find inspiration again. The visual cheat sheet is on my desk now!",
-    },
-    {
-      name: "Rohan Das",
-      role: "Student",
-      text: "As a student juggling multiple things, the 'Habit Hacker' toolkit gave me a clear system to build better study habits. Worth every rupee.",
-    },
+    { name: "Aarav Sharma", role: "Software Engineer", text: "The 'Productivity Power-Up' pack was a game-changer. I'm more focused and getting twice as much done. Highly recommended!" },
+    { name: "Priya Patel", role: "Freelance Designer", text: "I was stuck in a creative rut. The 'Mindful Creator' guide helped me find inspiration again. The visual cheat sheet is on my desk now!" },
+    { name: "Rohan Das", role: "Student", text: "As a student juggling multiple things, the 'Habit Hacker' toolkit gave me a clear system to build better study habits. Worth every rupee." },
   ];
 
   return (
@@ -290,8 +270,8 @@ const TestimonialCard = ({ name, role, text }: { name: string; role: string; tex
 
 function FinalCTASection() {
   return (
-    <section className="w-full py-24 md:py-32 text-center bg-secondary border-t border-border/50">
-      <div className="container px-4 md:px-6">
+    <section className="w-full py-24 md:py-32 text-center bg-secondary border-t border-border/50 relative overflow-hidden aurora-section">
+      <div className="relative z-10 container px-4 md:px-6">
         <h2 className="font-heading text-3xl md:text-5xl font-bold">
           Ready to Unlock Your Potential?
         </h2>
@@ -307,4 +287,3 @@ function FinalCTASection() {
     </section>
   );
 }
-
