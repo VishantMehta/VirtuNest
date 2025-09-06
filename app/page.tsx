@@ -279,7 +279,7 @@ function FinalCTASection() {
           Your journey to a better, more productive you starts now. Explore our collection and find the perfect Action Pack today.
         </p>
         <div className="mt-10">
-          <Button asChild size="lg" className="h-14 text-lg font-semibold rounded-full shadow-md">
+          <Button asChild size="lg" className="h-14 text-lg font-semibold rounded-none shadow-md">
             <Link href="/packs">View All Action Packs</Link>
           </Button>
         </div>
